@@ -7,7 +7,7 @@
     <title> Ean's portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
-    <link href="style.css" rel="stylesheet">
+   <link href="style.css" rel="stylesheet">
 </head>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -24,10 +24,23 @@
         <a class="nav-link" href="index.html#about">About Me</a>
         <a class="nav-link" href="index.html#skills">skills</a>
         <a class="nav-link" href="testimonials.html">Testimonials</a>
+        <li class="nav-item d-flex align-items-center ms-2">
+         <button id="theme-toggle"
+          class="btn btn-sm btn-outline-secondary border-0"
+          type="button"
+          title="Toggle dark mode"
+          aria-label="Toggle dark mode">
+    <i id="theme-icon" class="fas fa-moon"></i>
+  </button>
+</li>
+
+
       </div>
     </div>
   </div>
 </nav>
+
+
 
 <body>
     <section id="home" class="hero">
@@ -38,11 +51,14 @@
 
     <section id="about" class="section"> 
         <h2>About me</h2>
-        <p>Hi, My name is Ean and some things I like to do is screenshoting every homework and putting it in my reminders so I dont forget about it cause I am very forgetful. 
-            I take pictures of everything that i need to know then i turn them into mini note sections so i can study them. 
-            I set many different alarms because i'm a heavy sleeper and i like to wake up on time.
-             I like to play many different sports some that i like to play are basketball, volleyball, and football. 
-             One sport that i was on a team for was volleyball where me and my team made it to championships.</p>
+        <p> Hi, my name is Ean Worrell and here is what you should know about me. 
+          I am a young boy who was born in the Bronx but I am half Puerto-Rican and half Black. 
+          I am a high-school student learning web development and very passionate about sports I've played. 
+          To study efficiently, I condense everything I need to know into mini-notes where I can read over them. 
+          Because I'm a heavy sleeper, I set multiple alarms to make sure I wake up on time. 
+          Different things like playing games and trying out new sports keeps me focused and energized throughout the day. 
+          I'm always eager to learn new things and improve my skills in different things in many different ways. 
+</p>
     </section>
 
     <section id="skills" class="section">
@@ -66,6 +82,34 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script>
+  /* Bootstrap 5.3 color-mode helper */
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+
+
+  // Read saved preference or OS default
+  const stored = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const currentTheme = stored ? stored : (prefersDark ? 'dark' : 'light');
+  html.setAttribute('data-bs-theme', currentTheme);
+  updateIcon(currentTheme);
+
+
+  // Click handler
+  toggleBtn.addEventListener('click', () => {
+    const newTheme = html.getAttribute('data-bs-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon(newTheme);
+  });
+
+
+  function updateIcon(theme) {
+    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  }
+</script>
 </body>
 
 </html>
